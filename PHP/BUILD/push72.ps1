@@ -1,0 +1,1 @@
+docker push chocin/php:7.2-apache-xdebug 

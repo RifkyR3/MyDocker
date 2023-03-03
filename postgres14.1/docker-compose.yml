@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres14-environment:
+    # image: mysql:5.6
+    image: postgres:14.1
+    # build: 
+    #   dockerfile: DockerFile
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: workato
+      # POSTGRES_DB: docker
+    ports:
+      - 54321:5432
+    # command: --max_allowed_packet=32505856
+    command: ["postgres", "-c", "hba_file=/var/lib/foo/pg_hba.conf"]
+    volumes:
+      - d:/Program/docker/data/postgres/14/data/:/var/lib/postgresql/data
+      - d:/Program/docker/data/postgres/14/conf/pg_hba.conf:/var/lib/foo/pg_hba.conf
+
+  # adminer14:
+  #   image: adminer
+  #   # restart: always
+  #   ports:
+  #     - 8080:8080

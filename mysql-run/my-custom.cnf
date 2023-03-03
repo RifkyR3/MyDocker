@@ -1,0 +1,5 @@
+[mysqld]
+sql_mode =
+max_allowed_packet=2G
+innodb-rollback-segments=256
+innodb_file_format=Barracuda
