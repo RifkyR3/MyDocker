@@ -1,6 +1,6 @@
 FROM php:8.2-apache-bullseye
 
-RUN apt-get update && apt-get install -y --force-yes \
+RUN apt-get update && apt-get install -y  \
     firebird-dev \
     apt-utils \
     libtidy-dev \
@@ -31,9 +31,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
 
 RUN a2enmod rewrite
 
-RUN apt-get autoremove -y && apt-get clean && apt-get autoclean
-
-RUN service apache2 restart
-
 # And clean up the image
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get autoremove -y \
+    && apt-get clean \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

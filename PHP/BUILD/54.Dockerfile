@@ -4,7 +4,7 @@ FROM php:5.4-apache
 # RUN apt-key list  | grep "expired: " | sed -ne 's|pub .*/\([^ ]*\) .*|\1|gp' | xargs -n1 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 
 # RUN apt-key update
 
-RUN apt-get update && apt-get install -y --force-yes\
+RUN apt-get update && apt-get install --no-install-recommends -y\
     firebird-dev \
     apt-utils \
     libtidy-dev \
@@ -45,9 +45,8 @@ RUN docker-php-ext-install \
 
 RUN a2enmod rewrite
 
-RUN apt-get autoremove -y && apt-get clean && apt-get autoclean
-
-RUN service apache2 restart
-
 # And clean up the image
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get autoremove -y \
+    && apt-get clean \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
