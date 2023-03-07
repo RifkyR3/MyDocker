@@ -1,6 +1,6 @@
 FROM php:5.6-apache
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --no-install-recommends -y --force-yes \
     firebird-dev \
     apt-utils \
     libtidy-dev \

@@ -4,7 +4,7 @@ FROM php:5.4-apache
 # RUN apt-key list  | grep "expired: " | sed -ne 's|pub .*/\([^ ]*\) .*|\1|gp' | xargs -n1 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 
 # RUN apt-key update
 
-RUN apt-get update && apt-get install --no-install-recommends -y\
+RUN apt-get update && apt-get install --no-install-recommends -y --force-yes \
     firebird-dev \
     apt-utils \
     libtidy-dev \
